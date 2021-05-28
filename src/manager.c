@@ -226,21 +226,13 @@ int main(int argc, char **argv){
     int waitval = 0;
     int sum = 0;
     int stopt = 0;
-    struct timespec startp;
-    struct timespec stoptp;
-    clock_gettime(CLOCK_MONOTONIC, &startp);
     while(stoper!=processAmount){
         clock_gettime(CLOCK_MONOTONIC, &stoptp);
         retVal = mq_send(mq,(const char*)&messages[stoper],sizeof(struct Message),10);
         mq_getattr(mq,&attr);
         waitval++;
-        if((int)((double)(stoptp.tv_sec - startp.tv_sec ) + (double)( stoptp.tv_nsec - startp.tv_nsec )/ (double)1000000000)%1==0){
-        // if(stopt%10000000==0){
-             printf("tasks send: %d task finished: %s\n", waitval, progBuff);
-             fflush(stdout);
-        }
-        // }
-        //printf("send\n");
+       
+       
         stoper++;  
     }
 

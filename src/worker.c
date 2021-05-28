@@ -164,7 +164,7 @@ int main(int argc, char **argv){
 
     struct timespec start;
     clock_gettime(CLOCK_REALTIME, &start);
-    start.tv_sec += 5;  // Set for 20 seconds
+    start.tv_sec += 5;  
     for(int i=0;i<tasks;i++){
         while(attr.mq_curmsgs==0){
             mq_getattr(mq,&attr);
@@ -178,8 +178,7 @@ int main(int argc, char **argv){
         fdFlag = mmap(0, size, PROT_WRITE, MAP_SHARED, shm, 0);
     }
                 
-    //munmap(fdPass, size);
-    //shm_unlink(msg.passMemPath);
+   
 
     struct stat statbufPass;
     int passwordAmount = 0;
